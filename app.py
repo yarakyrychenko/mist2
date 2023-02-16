@@ -38,8 +38,8 @@ def format(option):
     return "Real" if option == "Real" else "Fake"
 
 
-st.header("🧐 MIST Misinformation Susceptibility Test 🧐")
-st.subheader("Think you can beat misinformation? Try this comprehensive test of misinformation susceptibility.")
+st.header("🧐 MIST Misinformation Susceptibility Test")
+st.markdown("Think you can beat misinformation? Try this comprehensive test of misinformation susceptibility.")
 st.markdown("*It only takes 2 minutes!*")
 
 placeholder = st.empty()
