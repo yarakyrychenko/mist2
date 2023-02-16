@@ -205,25 +205,28 @@ if agree or disagree:
         if st.session_state.dem_submitted:
             demplaceholder.empty()
             with st.expander("Optional Questions", expanded=True):
-                st.markdown("Thank you for submitting the optional questions!")
+                st.session_state.id = datetime.now().strftime('%Y%m-%d%H-%M-') + str(uuid4())
+                st.markdown(f"Thanks for participating in our study! Your app ID is **{st.session_state.id}**. [Email us](mailto:yk408@cam.ac.uk) with it if you want your answers deleted.") 
                 st.markdown("*Your answers to the questions are not taken into considerations when calculating your MIST results.*")
 
         if st.session_state.dem_submitted or disagree:
             #with st.expander("scores", expanded=True):
             if st.session_state.score > 16:
                 st.balloons()
-                st.subheader("🎉 Congratulations!")
-            if st.session_state.score <= 16:
-                st.subheader("👍 Good try!")
+                st.header("🎉 Congratulations!")
+            elif 13 < st.session_state.score <= 16:
+                st.header("👍 Good try!")
+            else:
+                st.header("❤️‍🩹 You can do better!")
         
-            st.markdown(f"You're more resilient to misinformation than **{st.session_state.ustable[st.session_state.score]}%** of the US population and **{st.session_state.uktable[st.session_state.score]}%** of the UK!")
+            st.subheader(f"You're more resilient to misinformation than **{st.session_state.ustable[st.session_state.score]}%** of the US population and **{st.session_state.uktable[st.session_state.score]}%** of the UK!")
             st.markdown("")
         
             st.session_state.score_print = st.session_state.score - 10 if st.session_state.score - 10 >= 0 else 0
             st.session_state.dn = st.session_state.n - st.session_state.d
             st.session_state.sign = "" if st.session_state.dn <= 0 else "+"
         
-            st.markdown("📈 Your MIST results")
+            st.header("📈 Your MIST results")
             st.markdown(f"**Veracity Discernment: {10*st.session_state.score_print}%** *(ability to accurately distinguish real news from fake news)*")
             st.markdown(f"**Real News Detection: {10*st.session_state.r}%** *(ability to correctly identify real news)*")
             st.markdown(f"**Fake News Detection: {10*st.session_state.f}%** *(ability to correctly identify fake news)*")
@@ -245,15 +248,12 @@ if agree or disagree:
             """)
         
         if st.session_state.dem_submitted:
-            st.markdown("***")
             #import pymongo
 
             #client = pymongo.MongoClient(st.secrets["mongo"])
             #db = client.polarization
             #st.session_state.collection = db.app
-            
-            st.session_state.id = datetime.now().strftime('%Y%m-%d%H-%M-') + str(uuid4())
-            st.markdown(f"Thanks for participating in our study! Your app ID is **{st.session_state.id}**. [Email us](mailto:yk408@cam.ac.uk) with it if you want your answers deleted.") 
+           
             user_data = {
                             "id": st.session_state.id, 
                             "answers": st.session_state.answers, 
