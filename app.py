@@ -240,9 +240,7 @@ if agree or disagree:
             data-url="yourmist.streamlit.app"
             data-show-count="false"
             data-size="Large" 
-            data-hashtags="misinformation,fakenews">
-            Tweet
-            </a>
+            data-hashtags="misinformation,fakenews"> Tweet </a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             """)
         
