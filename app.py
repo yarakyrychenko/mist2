@@ -204,12 +204,12 @@ if agree or disagree:
 
         if st.session_state.dem_submitted:
             demplaceholder.empty()
-            with st.expander("Optional Questions", expanded=False):
+            with st.expander("Optional Questions", expanded=True):
                 st.markdown("Thank you for submitting the optional questions!")
                 st.markdown("*Your answers to the questions are not taken into considerations when calculating your MIST results.*")
 
         if st.session_state.dem_submitted or disagree:
-
+            #with st.expander("scores", expanded=True):
             if st.session_state.score > 16:
                 st.balloons()
                 st.subheader("🎉 Congratulations!")
